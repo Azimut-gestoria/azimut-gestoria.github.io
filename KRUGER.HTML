@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gauss-Kruger - Geográficas-AZIMUT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #2e3192;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .sidebar {
+      width: 10%;
+      padding: 10px;
+    }
+    .main-content {
+      width: 80%;
+      padding: 20px;
+      background-color: #1e2552;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .main-content form {
+      display: flex;
+      flex-direction: column;
+    }
+    .main-content table {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .main-content input[type="text"],
+    .main-content input[type="button"],
+    .main-content select,
+    .main-content textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    .main-content input[type="button"] {
+      background-color: #3b3e7b;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .main-content input[type="button"]:hover {
+      background-color: #4c4f92;
+    }
+    .main-content textarea {
+      resize: none;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script type="text/javascript" src="kruger8.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="ad-space">
+        
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="logo">
+        <a href="https://www.instagram.com/azimut.agrimensura/" target="_blank">
+          <img src="r.png" height="100">
+        </a>
+      </div>
+      <form name="nro1">
+        <h2>CONVERTIDOR DE COORDENADAS - Gauss-Kruger / Geográficas </h2>
+        <select name="elipsoide" onclick="elips()">
+          <option selected="selected" value="0">WGS84</option>
+          <option value="1">Internat.1924</option>
+          <option value="2">Clarke 1866</option>
+          <option value="3">WGS72</option>
+          <option value="4">GRS80</option>
+          <option value="5">Hayford 1909</option>
+          <option value="6">Usuario</option>
+        </select>
+        <table>
+          <tbody>
+            <tr>
+              <td>Semieje</td>
+              <td></td>
+              <td>Aplanamiento</td>
+              <td>Falso Norte</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="a" onchange="arco2()" value="6378137"></td>
+              <td>m</td>
+              <td><input type="text" name="fff" onchange="arco2()" value="298.2572236"></td>
+              <td><input type="text" disabled="disabled" name="falsonorte" value="0"> m</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="contador" size="6" value="0"> Conversiones realizadas</td>
+              <td></td>
+              <td></td>
+              <td>Tipo de proyección <select name="kproy" align="center">
+                  <option selected="selected" value="1">Gauss-Kruger</option>
+                  <option value="2">UTM</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="text" name="punto" size="4" value=""> Nombre del Punto <br>
+        <br>X-Norte <input type="text" name="xxxx" size="10" value="4000000">
+        Y-Este <input type="text" name="yyyy" size="10" value="2500123">
+        <br><br>Meridiano Central Automático
+        <input type="text" name="mc" size="6" value="-69"> 
+        <input type="checkbox" checked="checked" name="mca" value="true"> ó Zona UTM <input type="text" name="zonau" size="1">
+        <input type="button" name="ejecute" onclick="gk2geo()" value="a Geográficas">
+        <br><br>Latitud
+        <input type="text" name="latg" size="4" value="-53"> °
+        <input type="text" name="latm" size="3" value="47"> '
+        <input type="text" name="lats" size="9" value="10.5555"> " 
+        <br><br>Longitud
+        <input type="text" name="lond" size="4" value="-67"> °
+        <input type="text" name="lonm" size="3" value="45"> '
+        <input type="text" name="lons" size="9" value="5.2222"> "
+        <input type="button" name="ejecut2" onclick="mercator()" size="18" value="a Planas">
+        <input type="button" name="okml" onclick="abrirkmlw()" size="18" value="abrir KML">
+        <br><br>
+        <textarea cols="120" name="salida" rows="20"></textarea> <br>
+        <input type="button" name="borrar" onclick="borra()" value="Borrar">
+      </form>
+    </div>
+    <div class="sidebar">
+      <div class="ad-space">
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+       
+
